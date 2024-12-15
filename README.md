@@ -1,6 +1,6 @@
 # 🏦 ENS Treasury Utils
 
-> Making treasury management a bit less scary! 🎉
+> Making treasury transactions a bit less scary! 🎉
 
 A collection of utilities for managing ENS DAO treasury transactions, starting with a handy USDC transfer calldata builder.
 
@@ -8,9 +8,10 @@ A collection of utilities for managing ENS DAO treasury transactions, starting w
 
 Currently featuring:
 
-- **USDC Transfer Builder**: Generate accurate calldata for USDC transfers without breaking a sweat!
+- **USDC Transfer Builder**: Generate accurate calldata for USDC transfers simply!
 - **Input Validation**: Because nobody likes failed transactions 😅
 - **Interactive CLI**: For when you prefer typing to coding
+- **Built-in Testing**: Verify against known-good DAO transactions 🧪
 
 ## 🚀 Quick Start
 
@@ -37,13 +38,48 @@ Follow the prompts to enter:
 
 ```javascript
 const { buildUSDCTransferData } = require("./buildUSDCTransfer");
-
 const calldata = buildUSDCTransferData(
   "0x690F0581eCecCf8389c223170778cD9D029606F2", // recipient
   "1,218,669.76" // amount (commas are fine!)
 );
-
 console.log(calldata);
+```
+
+## 🧪 Testing
+
+Testing is good:
+
+### Run the Tests
+
+```bash
+npm test
+```
+
+### What's Being Tested?
+
+We verify against real ENS DAO transfers that have been executed successfully:
+
+- 254,000 USDC to Meta-governance 🏛️
+- 836,000 USDC to Ecosystem 🌱
+- 226,000 USDC to Public Goods 🌍
+
+### Test Output
+
+When everything's working right (which it should be! 🤞), you'll see something like:
+
+```
+Running USDC Transfer Calldata Tests
+
+Testing Metagov Transfer: ✅
+Amount: 254000 USDC
+Address: 0x91c32893216dE3eA0a55ABb9851f581d4503d39b
+✨ PASS - Calldata matches exactly!
+
+... and so on for each test ...
+
+Test Summary:
+Passed: 3 🎉
+Failed: 0 😌
 ```
 
 ## 🔍 Example Transaction
@@ -63,6 +99,7 @@ Here's a real-world example from the ENS DAO:
 - Handles USDC's 6 decimal places automatically
 - Validates Ethereum addresses and amounts
 - Supports human-readable number formatting (with commas)
+- Verifies against known-good transactions
 
 ## 🤝 Contributing
 
